@@ -9,6 +9,30 @@ use Log;
 
 class DocumentGenerator
 {
+    private function renderParam($name, $value)
+    {
+        $result = "";
+
+        if (is_object($value))
+        {
+            $value = (array)$value;
+        }
+
+        if (is_array($value))
+        {
+            foreach ($value as $inner_name => $inner_value)
+            {
+                $result .= $this->renderParam($name . "[" . $inner_name . "]", $inner_value);
+            }
+        }
+        else
+        {
+            $result = "-d \"$name=$value\" \n\\";
+        }
+
+        return $result;
+    }
+
     /**
      * Generate tripit/slate documentation for a specific API request.
      *
@@ -34,17 +58,7 @@ class DocumentGenerator
         $params = "";
         foreach ($request->input() as $name => $value)
         {
-            if (is_array($value))
-            {
-                foreach ($value as $inner_name => $inner_value)
-                {
-                    $params .= '-d "' . $name . '[' . $inner_name . ']=' . $inner_value. "\" \\\n";
-                }
-            }
-            else
-            {
-                $params .= "-d \"$name=$value\" \\";
-            }
+            $params .= $this->renderParam($name, $value);
         }
 
         $slate_doc = <<<SLATE_DOC
