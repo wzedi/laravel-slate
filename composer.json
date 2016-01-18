@@ -1,5 +1,5 @@
 {
-    "name": "cadreworks/laravel-slate",
+    "name": "wzedi/laravel-slate",
     "description": "A tripit/slate document generator for Laravel controllers",
     "keywords": ["laravel", "tripit/slate", "api"],
     "require": {
