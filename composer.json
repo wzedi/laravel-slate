@@ -1,0 +1,28 @@
+{
+    "name": "cadreworks/laravel-slate",
+    "description": "A tripit/slate document generator for Laravel controllers",
+    "keywords": ["laravel", "tripit/slate", "api"],
+    "require": {
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Warrick Zedi",
+            "email": "wzedi@cadreworks.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "CadreWorks\\LaravelSlate\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "^5.0@dev"
+    },
+    "autoload-dev": {
+      "classmap": [
+        "tests/TestCase.php"
+      ]
+    }
+}
